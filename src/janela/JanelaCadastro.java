@@ -1,0 +1,32 @@
+//Classe para abrir apenas uma vez a tela cadastro 
+//Classe para abrir apenas uma vez a tela cadastro 
+
+package janela;
+import java.awt.Dimension;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+/**
+*
+* @author Cleber Nascimento
+*/
+public class JanelaCadastro {
+    
+private static JDesktopPane jdeskTopPane;
+
+public JanelaCadastro(JDesktopPane jdeskTopPane){
+JanelaCadastro.jdeskTopPane = jdeskTopPane;
+}
+public  static void abrirJanela(JInternalFrame jInternalFrame){
+    if (jInternalFrame.isVisible()) {
+        jInternalFrame.toFront();
+        jInternalFrame.requestFocus();
+    }else{
+        jdeskTopPane.add(jInternalFrame);
+        jInternalFrame.setVisible(true); // abre a tela cadastro (jInternalFrame)
+        //centraliza o jInternalFrame dentro do jDesktopPane1
+        Dimension d = jInternalFrame.getDesktopPane().getSize();
+        jInternalFrame.setLocation((d.width - jInternalFrame.getSize().width) / 2, 
+                                   (d.height - jInternalFrame.getSize().height) / 2);
+        }
+    }
+}
